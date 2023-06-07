@@ -2,34 +2,34 @@
 #include <stdlib.h>
 #include <string.h>
 
-unsigned int custom_hash(const char* message) {
-    srand((unsigned int)message);
-    unsigned int hash_value = rand() % (1 << 16);
-    return hash_value;
+unsigned int hash(const char* msg) {
+    srand((unsigned int)msg);
+    unsigned int hv = rand() % (1 << 16);
+    return hv;
 }
 
 int main() {
-    char message[100];
+    char msg[100];
     printf("Enter a message: ");
-    fgets(message, sizeof(message), stdin);
-    message[strcspn(message, "\n")] = '\0'; 
-    unsigned int hash_value = custom_hash(message);
+    fgets(msg, sizeof(msg), stdin);
+    msg[strcspn(msg, "\n")] = '\0'; 
+    unsigned int hv = hash(msg);
 
-    printf("Message: %s\n", message);
-    printf("Hash value: %u\n", hash_value);
+    printf("Message: %s\n", msg);
+    printf("Hash value: %u\n", hv);
 
-    char received_message[100];
+    char rmsg[100];
     printf("Received message: ");
-    fgets(received_message, sizeof(received_message), stdin);
-    received_message[strcspn(received_message, "\n")] = '\0';
-    unsigned int received_hash_value = custom_hash(received_message);
-    printf("Hash value: %u\n", received_hash_value);
+    fgets(rmsg, sizeof(rmsg), stdin);
+    rmsg[strcspn(rmsg, "\n")] = '\0';
+    unsigned int rhv = hash(rmsg);
+    printf("Hash value: %u\n", rhv);
 
-    if (received_hash_value == hash_value) {
-        printf("Integrity: The message is not modified.\n");
+    if (rhv == hv) {
+        printf("The message is not modified.\n");
     }
     else {
-        printf("Integrity: The message is modified.\n");
+        printf("The message is modified.\n");
     }
 
     return 0;
