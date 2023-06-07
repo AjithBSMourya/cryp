@@ -28,14 +28,14 @@ struct pair extendedEuclid(int a, int b)
     }
     struct pair re;
     re.f = b;
-    re.s.first = xL;
+    re.s.f = xL;
     re.s.s = yL;
     return re;
 }
 
 int modInverse(int a, int m) 
 {
-    return (extendedEuclid(a, m).second.first + m) % m;
+    return (extendedEuclid(a, m).s.f + m) % m;
 }
 
 int main()
