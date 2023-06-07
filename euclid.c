@@ -41,7 +41,7 @@ int modInverse(int a, int m)
 int main()
 {
     int a, m;
-    printf("Enter number to find modular multiplicative inverse: ");
+    printf("Enter a number: ");
     scanf("%d", &a);
     printf("Enter Modular Value: ");
     scanf("%d", &m);
